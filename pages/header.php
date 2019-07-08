@@ -151,29 +151,25 @@ $level =    $_SESSION['level'];
                                 <a href="#"><i class="fa fa-table fa-fw"></i> Data Nilai<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="input_utswalikelas.php">Data Nilai UTS </a>
-                                    </li>
-                                    <li>
-                                        <a href="kesehatan.php">Data Nilai Kesehatan </a>
+                                        <a href="spiritual.php?ids=">Data Nilai Spiritual </a>
+                                     </li>
+                                     <li>
+                                        <a href="sosial.php?ids=">Data Nilai Sosial </a>
                                     </li>
                                     <li>
                                         <a href="kls.php?ids">Data Nilai Ekstrakurikuler </a>
                                     </li>
                                     <li>
-                                        <a href="prestasi.php?ids">Data Nilai Prestasi </a>
+                                       <a href="ukuran_walikelas.php">Data Tinggi dan Berat Badan </a> 
                                     </li>
                                     <li>
-                                     
-                                        <a href="spiritual.php?ids=">Nilai sikap <span class="fa arrow"></span></a>
-                                        <ul class="nav nav-second-level"> 
-                                    
+                                        <a href="kesehatan.php">Data Nilai Kesehatan </a>
+                                        
+                                    </li>
                                     <li>
-                                                <a href="spiritual.php?ids=">Data Nilai Spiritual </a>
-                                            </li>
-                                            <li>
-                                                <a href="sosial.php?ids=">Data Nilai Sosial </a>
-                                           </ul>
-                                               </ul>
+                                        <a href="prestasi.php?ids">Data Nilai Prestasi </a> 
+                                    
+                                   </ul>
                                 <!-- /.nav-second-level -->
                                 <li>
                                 <!-- /.nav-second-level -->
@@ -185,7 +181,18 @@ $level =    $_SESSION['level'];
                                     <li>
                                     <a href="ketrampilan_walikelas.php?ids=">Data Nilai Ketrampilan </a>                                    </li>
                                     <li>
-                                    <a href="pengetahuan_walikelas.php?ids=">Data Nilai Pengetahuan </a>                                    </li>
+                                    <a href="pengetahuan_walikelas.php?ids=">Data Nilai Pengetahuan </a>
+                                    </li>
+                                    <li>
+                                        <a href="input_utswalikelas.php">Data Nilai UTS </a>
+                                    </li>
+                                    <li>
+                                      
+                                        <a href="kehadiran_walikelas.php">Data Kehadiran Siswa </a>
+                                    </li>
+                                    <li> 
+                                        <a href="deskripsi_walikelas.php">Data Deskripsi Raport Siswa </a>
+                                    </li>
                                     
                                 </ul>
                                 <!-- /.nav-second-level -->

@@ -105,7 +105,6 @@ if(isset($_POST['simpan'])){
     $kd_ekskul   =   $_POST['kd_ekskul'];
     $kegiatan   =   $_POST['kegiatan'];
     $nilai   =   $_POST['nilai'];
-    $deskripsi   =   $_POST['deskripsi'];
     $jumlah = count($kegiatan) - 1;
 
     for($i=0;$i<=$jumlah;++$i){

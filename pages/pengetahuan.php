@@ -58,7 +58,6 @@ include 'header.php';
                                                     <th>Tema 3</th>
                                                     <th>Tema 4</th>
                                                     <th>Tema 5</th>
-                                                    <th>Deskripsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -99,7 +98,6 @@ include 'header.php';
                                                     <td><input class="form-control" placeholder="Tema 3" name="tema3[]" required></td>
                                                     <td><input class="form-control" placeholder="Tema 4" name="tema4[]" required></td>
                                                     <td><input class="form-control" placeholder="Tema 5" name="tema5[]" required></td>
-                                                    <td><input class="form-control" placeholder="Deskripsi" name="deskripsi[]" required></td>
                                                 </tr>
                                                 <?php 
                                                     }
@@ -139,11 +137,10 @@ if(isset($_POST['simpan'])){
     $tema3 = $_POST['tema3'];
     $tema4 = $_POST['tema4'];
     $tema5 = $_POST['tema5'];
-    $deskripsi   =   $_POST['deskripsi'];
     $jumlah = count($kd_mapel) - 1;
 
     for($i=0;$i<=$jumlah;++$i){
-        $sql = "INSERT INTO tbl_nilai_pengetahuan (kd_mapel,nis,kd_semester,tema1,tema2,tema3,tema4,tema5,deskripsi) VALUES ('$kd_mapel[$i]','$nis[$i]','$kd_semester[$i]','$tema1[$i]','$tema2[$i]','$tema3[$i]','$tema4[$i]','$tema5[$i]','$deskripsi[$i]')";
+        $sql = "INSERT INTO tbl_nilai_pengetahuan (kd_mapel,nis,kd_semester,tema1,tema2,tema3,tema4,tema5,deskripsi) VALUES ('$kd_mapel[$i]','$nis[$i]','$kd_semester[$i]','$tema1[$i]','$tema2[$i]','$tema3[$i]','$tema4[$i]','$tema5[$i]')";
         $query = mysqli_query($connect, $sql);
     
        

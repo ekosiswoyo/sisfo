@@ -2,7 +2,7 @@
 include '../config.php';
 include 'header.php';
 $id = $_GET['id'];
-$sql = mysqli_query($connect,"select * from tb_nilai where id_pengumuman='$id'");
+$sql = mysqli_query($connect,"select * from tb_pengumuman where id_pengumuman='$id'");
 $cari = mysqli_fetch_array($sql);
 ?>
             <div id="page-wrapper">
@@ -82,7 +82,7 @@ if(isset($_POST['simpan'])){
 	$lokasi_file1    = $_FILES['file']['tmp_name'];
     $ekstensi_file = $_FILES["file"]["type"];
 
-    $sql = "UPDATE tb_nilai set judul='$judul', isi='$isi', file='$nama_file1' where id_pengumuman = '$id_pengumuman'";
+    $sql = "UPDATE tb_pengumumanset judul='$judul', isi='$isi', file='$nama_file1' where id_pengumuman = '$id_pengumuman'";
     $query = mysqli_query($connect, $sql);
 
     if($query){

@@ -112,33 +112,5 @@ $kls = $_GET['kelas'];
 
 <?php
 include 'footer.php';
-include '../config.php';
-
-if(isset($_POST['simpan'])){
-
-    $nis   =   $_POST['nis'];
-    $kd_ekskul   =   $_POST['kd_ekskul'];
-    $kegiatan   =   $_POST['kegiatan'];
-    $nilai   =   $_POST['nilai'];
-    $deskripsi   =   $_POST['deskripsi'];
-    $jumlah = count($kegiatan) - 1;
-
-    for($i=0;$i<=$jumlah;++$i){
-        $sql = "INSERT INTO tb_nilai_ekskul (kd_ekskul,nis,kegiatan,nilai,deskripsi) VALUES ('$kd_ekskul[$i]','$nis[$i]','$kegiatan[$i]','$nilai[$i]','$deskripsi[$i]')";
-        $query = mysqli_query($connect, $sql);
-    
-       
-    
-    }
-    if($query){
-        echo "<script>window.alert('Data Berhasil di Simpan!');</script>";
-       echo "<script>window.location='siswa.php';</script>";
-    }else{
-        echo 'Update Data Gagal!';
-    }
-
-  
-
-}
 ?>
         

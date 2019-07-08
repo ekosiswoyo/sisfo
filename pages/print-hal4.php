@@ -32,14 +32,16 @@ echo "<h2>B. Pengetahuan dan Keterampilan</h2>
 <p>KKM Satuan Pendidikan : 65,00</p><table id='tablemodul1' width=100% border=1>
           <tr> <th rowspan='2'>No</th>
             <th width='160px' rowspan='2'>Mata Pelajaran</th>
-            <th colspan='2' style='text-align:center'>Pengetahuan</th>
-            <th colspan='2' style='text-align:center'>Keterampilan</th>
+            <th colspan='3' style='text-align:center'>Pengetahuan</th>
+            <th colspan='3' style='text-align:center'>Keterampilan</th>
           </tr>
           <tr>
             <th>Nilai</th>
             <th>Predikat</th>
+            <th>Deskripsi</th>
             <th>Nilai</th>
             <th>Predikat</th>
+            <th>Deskripsi</th>
           </tr>";
 
   
@@ -47,6 +49,7 @@ echo "<h2>B. Pengetahuan dan Keterampilan</h2>
         $no = 1;
         while ($m = mysqli_fetch_array($mapel)){                                
         $rapn = mysqli_fetch_array(mysqli_query($connect, "SELECT sum((tema1+tema2+tema3+tema4+tema5)/5) as raport FROM tbl_nilai_pengetahuan where nis='$s[nis]' and kd_mapel='$m[kd_mapel]'"));
+         $rapns = mysqli_fetch_array(mysqli_query($connect, "SELECT deskripsi_raport as deskripsi_raport FROM tb_deskripsi_raport where nis='$s[nis]' and kd_mapel='$m[kd_mapel]' and aspek='Pengetahuan'"));
         $cekpredikat = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM tb_predikat "));
             if ($cekpredikat >= 1){
                 $grade3 = mysqli_fetch_array(mysqli_query($connect, "SELECT * FROM `tb_predikat` where (".number_format($rapn[raport])." >=nilai_a) AND (".number_format($rapn[raport])." <= nilai_b)"));
@@ -55,6 +58,7 @@ echo "<h2>B. Pengetahuan dan Keterampilan</h2>
             }
 
         $rapnk = mysqli_fetch_array(mysqli_query($connect, "SELECT sum((tema1+tema2+tema3+tema4+tema5)/5) as raport FROM tbl_nilai_keterampilan where  nis='$s[nis]' and kd_mapel='$m[kd_mapel]'"));
+         $rapnd = mysqli_fetch_array(mysqli_query($connect, "SELECT deskripsi_raport as deskripsi_raport FROM tb_deskripsi_raport where nis='$s[nis]' and kd_mapel='$m[kd_mapel]' and aspek='Keterampilan'"));
         $cekpredikat2 = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM tb_predikat"));
             if ($cekpredikat2 >= 1){
                 $grade = mysqli_fetch_array(mysqli_query($connect, "SELECT * FROM `tb_predikat` where (".number_format($rapnk[raport])." >=nilai_a) AND (".number_format($rapnk[raport])." <= nilai_b)"));
@@ -67,8 +71,10 @@ echo "<h2>B. Pengetahuan dan Keterampilan</h2>
                 <td>$m[nm_mapel]</td>
                 <td align=center>".number_format($rapn[raport])."</td>
                 <td align=center>$grade3[grade]</td>
+                <td align=center>$rapns[deskripsi_raport]</td>
                 <td align=center>".number_format($rapnk[raport])."</td>
                 <td align=center>$grade[grade]</td>
+                <td align=center>$rapnd[deskripsi_raport]</td>
             </tr>";
         $no++;
         }
@@ -106,9 +112,15 @@ echo "<b>C. Extrakulikuler</b>
       echo "</table>
       <br>";
 echo "<b>D. Saran - Saran</b>
-      <table id='tablemodul1' width=100% height=80px border=1>
-        <tr><td></td></tr>
-      </table>";
+      <table id='tablemodul1' width=100% height=80px border=1>";
+
+       $extra = mysqli_query($connect, "SELECT * FROM tb_saran where nis='$_GET[id]'");
+          $no = 1;
+          while ($ex = mysqli_fetch_array($extra)){
+            echo " <tr><td>$ex[saran]</td></tr> ";
+          }
+       
+echo      "</table>";
          
       ?>
 <table border=0 width=100%>

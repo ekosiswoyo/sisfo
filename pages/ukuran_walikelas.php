@@ -33,7 +33,7 @@ $walikelas = $datasql['kd_kelas'];
                                 
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
-                                  
+                                      
                                       
                                        
                                     <div class="table-responsive col-md-12">
@@ -44,18 +44,16 @@ $walikelas = $datasql['kd_kelas'];
                                                     <th>No</th>
                                                     <th>NIS</th>
                                                     <th>Nama Siswa</th>
-                                                    <th>Lihat Nilai</th>
-                                                    <th>Mapel</th>
-                                                    <th>Tema 1</th>
-                                                    <th>Tema 2</th>
-                                                    <th>Tema 3</th>
-                                                    <th>Tema 4</th>
-                                                    <th>Tema 5</th>
+                                                    <th>Lihat Ukuran</th>
+                                                    <th>Aspek Yang di Nilai</th>
+                                                    <th>Smt 1</th>
+                                                    <th>Smt 2</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
                                                 $no = 1;
+
                                                 
                                                     $sql = mysqli_query($connect, "SELECT * FROM tb_siswa where kd_kelas='$walikelas'");
                                                     while($sqlcari = mysqli_fetch_array($sql)){
@@ -66,29 +64,29 @@ $walikelas = $datasql['kd_kelas'];
                                                     <td><?php echo $no++; ?></td>
                                                     <td><?php echo $sqlcari['nis']; ?></td>
                                                     <td><?php echo $sqlcari['nm_siswa']; ?></td>
-                                                    <td><a href="input_pengetahuan.php?id=<?php echo $sqlcari['nis']; ?>&kelas=<?php echo $sqlcari['kd_kelas']; ?>"><button type="button" class="btn btn-outline btn-primary btn-xs">Lihat Nilai</button></a></td>
-                                                    <td>
-                                                    <input class="form-control" placeholder="Kegiatan" name="nis[]" value="<?php echo $sqlcari['nis'];?>" type="hidden">
-                                                    <select class="form-control" label="aa" name="kd_mapel[]">
-                                                        <?php
-                                                        $kelas = mysqli_query($connect,"select * from tb_mapel");
-                                                        while($datakelas = mysqli_fetch_array($kelas)){
-                                                        ?>
-                                                        <option value="<?php echo $datakelas['kd_mapel'];?>"><?php echo $datakelas['kd_mapel'];?> - <?php echo $datakelas['nm_mapel'];?></option>
-                                                        <?php } ?>
+                                                    <td><a href="input_ukuran.php?id=<?php echo $sqlcari['nis']; ?>&kelas=<?php echo $sqlcari['kd_kelas']; ?>"><button type="button" class="btn btn-outline btn-primary btn-xs">Lihat TB&BB</button></a></td>
+                                                     <td>
+                                                        <input class="form-control" name="nis[]" value="<?php echo $sqlcari['nis'];?>" type="hidden">
+                                                    <select class="form-control" label="Aspek" name="aspek[]">
+                                                      
+                                                        <option value="Tinggi (Cm)">Tinggi (Cm)</option>
+                                                        <option value="Berat Badan (Kg)">Berat Badan (Kg)</option>
+                                                     
                                                     </select>
                                                     </td>
+                                                  
+                                                    <td>
                                                     
+                                                    <input class="form-control" placeholder="Smt 1" name="smt1[]" required>
+                                                    </td>
+                                                    <td>
+                                                    <input class="form-control" placeholder="Smt 2" name="smt2[]" required>
+                                                    </td>
 
-
-                                                    <td><input class="form-control" placeholder="Tema 1" name="tema1[]" required></td>
-                                                    <td><input class="form-control" placeholder="Tema 2" name="tema2[]" required></td>
-                                                    <td><input class="form-control" placeholder="Tema 3" name="tema3[]" required></td>
-                                                    <td><input class="form-control" placeholder="Tema 4" name="tema4[]" required></td>
-                                                    <td><input class="form-control" placeholder="Tema 5" name="tema5[]" required></td>
                                                 </tr>
                                                 <?php 
-                                                    } ?>
+                                                    }
+                                             ?>
                                                 
                                             </tbody>
                                         </table>
@@ -117,16 +115,13 @@ include '../config.php';
 if(isset($_POST['simpan'])){
 
     $nis   =   $_POST['nis'];
-    $kd_mapel   =   $_POST['kd_mapel'];
-    $tema1 = $_POST['tema1'];
-    $tema2 = $_POST['tema2'];
-    $tema3 = $_POST['tema3'];
-    $tema4 = $_POST['tema4'];
-    $tema5 = $_POST['tema5'];
-    $jumlah = count($kd_mapel) - 1;
+    $aspek = $_POST['aspek'];
+    $smt1 = $_POST['smt1'];
+    $smt2 = $_POST['smt2'];
+    $jumlah = count($nis) - 1;
 
     for($i=0;$i<=$jumlah;++$i){
-        $sql = "INSERT INTO tbl_nilai_pengetahuan (kd_mapel,nis,tema1,tema2,tema3,tema4,tema5) VALUES ('$kd_mapel[$i]','$nis[$i]','$tema1[$i]','$tema2[$i]','$tema3[$i]','$tema4[$i]','$tema5[$i]')";
+        $sql = "INSERT INTO tb_ukuran (nis,aspek,smt1,smt2) VALUES ('$nis[$i]','$aspek[$i]','$smt1[$i]','$smt2[$i]')";
         $query = mysqli_query($connect, $sql);
     
        
@@ -134,7 +129,7 @@ if(isset($_POST['simpan'])){
     }
     if($query){
         echo "<script>window.alert('Data Berhasil di Simpan!');</script>";
-       echo "<script>window.location='pengetahuan_walikelas.php?ids';</script>";
+       echo "<script>window.location='ukuran_walikelas.php?ids';</script>";
     }else{
         echo 'Update Data Gagal!';
     }

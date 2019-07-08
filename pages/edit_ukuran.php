@@ -2,14 +2,14 @@
 include '../config.php';
 include 'header.php';
 $id = $_GET['id'];
-$sql = mysqli_query($connect,"select * from tbl_nilai_pengetahuan where kd_nilai_pengetahuan='$id'");
+$sql = mysqli_query($connect,"select * from tb_ukuran where id_ukuran='$id'");
 $cari = mysqli_fetch_array($sql);
 ?>
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Form Edit Data Nilai Pengetahuan</h1>
+                            <h1 class="page-header">Form Edit Ukuran Siswa</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -18,35 +18,33 @@ $cari = mysqli_fetch_array($sql);
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Edit Data Pengetahuan
+                                    Edit Data Ukuran
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <form method="POST" action="">
 
+                                                <div class="form-group">
+                                                    <label>Aspek</label>
+                                                    <input class="form-control" type="hidden"  name="id_ukuran" value="<?php echo $cari['id_ukuran']; ?>">
+                                                      <select class="form-control" label="Aspek" name="aspek[]">
+                                                      
+                                                        <option value="Tinggi (Cm)">Tinggi (Cm)</option>
+                                                        <option value="Berat Badan (Kg)">Berat Badan (Kg)</option>
+                                                     
+                                                    </select>
+                                                    </div>
 
                                                 <div class="form-group">
-                                                    <label>Tema 1</label>
-                                                    <input class="form-control" type="hidden" placeholder="KD" name="kd_nilai_pengetahuan" value="<?php echo $cari['kd_nilai_pengetahuan']; ?>">
-                                                    <input class="form-control" placeholder="Tema 1" name="tema1" value="<?php echo $cari['tema1']; ?>">
+                                                    <label>Smt 1</label>
+                                                    <input class="form-control" placeholder="Smt 1" name="smt1" value="<?php echo $cari['smt1']; ?>">
                                                 </div>
                                                  <div class="form-group">
-                                                    <label>Tema 1</label>
-                                                    <input class="form-control" placeholder="Tema 1" name="tema2" value="<?php echo $cari['tema2']; ?>">
+                                                    <label>Smt 2</label>
+                                                    <input class="form-control" placeholder="Smt 2" name="smt2" value="<?php echo $cari['smt2']; ?>">
                                                 </div>
-                                                 <div class="form-group">
-                                                    <label>Tema 1</label>
-                                                    <input class="form-control" placeholder="Tema 1" name="tema3" value="<?php echo $cari['tema3']; ?>">
-                                                </div>
-                                                 <div class="form-group">
-                                                    <label>Tema 1</label>
-                                                    <input class="form-control" placeholder="Tema 1" name="tema4" value="<?php echo $cari['tema4']; ?>">
-                                                </div>
-                                                 <div class="form-group">
-                                                    <label>Tema 1</label>
-                                                    <input class="form-control" placeholder="Tema 1" name="tema5" value="<?php echo $cari['tema5']; ?>">
-                                                </div>
+                                                 
 
                                                 
 
@@ -82,16 +80,13 @@ include '../config.php';
 if(isset($_POST['simpan'])){
 
     // $nis   =   $_POST['nis'];
-    $kd_nilai_pengetahuan   =   $_POST['kd_nilai_pengetahuan'];
-    $tema1 = $_POST['tema1'];
-    $tema2 = $_POST['tema2'];
-    $tema3 = $_POST['tema3'];
-    $tema4 = $_POST['tema4'];
-    $tema5 = $_POST['tema5'];
-    // $jumlah = count($kd_nilai_keterampilan) - 1;
+    $id_ukuran   =   $_POST['id_ukuran'];
+    $aspek   =   $_POST['aspek'];
+    $smt1 = $_POST['smt1'];
+    $smt2 = $_POST['smt2'];
 
     // for($i=0;$i<=$jumlah;++$i){
-        $sql = "UPDATE tbl_nilai_pengetahuan set tema1='$tema1', tema2='$tema2', tema3='$tema3', tema4='$tema4', tema5='$tema5' where kd_nilai_pengetahuan='$kd_nilai_pengetahuan'";
+        $sql = "UPDATE tb_ukuran set aspek='$aspek', smt1='$smt1', smt2='$smt2' where id_ukuran='$id_ukuran'";
          $query = mysqli_query($connect, $sql);
     
        
@@ -99,7 +94,7 @@ if(isset($_POST['simpan'])){
     // }
     if($query){
         echo "<script>window.alert('Data Berhasil di Simpan!');</script>";
-       echo "<script>window.location='pengetahuan.php?ids';</script>";
+       echo "<script>window.location='ukuran_walikelas.php?ids';</script>";
     }else{
         echo 'Update Data Gagal!';
     }

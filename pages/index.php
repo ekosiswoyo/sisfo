@@ -15,7 +15,7 @@ $level =    $_SESSION['level'];
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                 <?php if($level == 'Wali Murid' || $level == 'Administrator'){ ?>
+                 <?php if($level == 'Wali Murid' || $level == 'admin'){ ?>
                 <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-red">
@@ -40,7 +40,7 @@ $level =    $_SESSION['level'];
                                             <tbody>
                                                 <?php
                                                 $no = 1;
-                                                $sql = mysqli_query($connect, "Select * from tb_nilai");
+                                                $sql = mysqli_query($connect, "Select * from tb_pengumuman");
                                                 while($data = mysqli_fetch_array($sql)){
                                                 ?>
                                                 <tr class="odd gradeX">

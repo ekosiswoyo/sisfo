@@ -2,16 +2,14 @@
 include '../config.php';
 include 'header.php';
 $id = $_GET['id'];
-$nis = $_GET['nis'];
-$kelas = $_GET['kelas'];
-$sql = mysqli_query($connect,"select * from tb_nilai_ekskul a, tb_ekstrakurikuler b where kd_nilai_ekskul='$id' and a.kd_ekskul=b.kd_ekskul");
+$sql = mysqli_query($connect,"select * from tb_saran where id_saran='$id'");
 $cari = mysqli_fetch_array($sql);
 ?>
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Form Edit Data Nilai Ekskul</h1>
+                            <h1 class="page-header">Form Edit Saran Siswa</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -20,7 +18,7 @@ $cari = mysqli_fetch_array($sql);
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Edit Data Nilai Ekskul
+                                    Edit Data Saran
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
@@ -28,17 +26,12 @@ $cari = mysqli_fetch_array($sql);
                                             <form method="POST" action="">
 
                                                 <div class="form-group">
-                                                    <label>Nama Ekstrakurikuler</label>
-                                                    <input class="form-control" placeholder="Kode Kelas" name="nm_ekskul" value="<?php echo $cari['nm_ekskul']; ?>" readonly>
-                                                </div>
+                                                    <label>Saran</label>
+                                                    <input class="form-control" type="hidden"  name="id_saran" value="<?php echo $cari['id_saran']; ?>">
+                                                       <textarea class="form-control" placeholder="Saran" name="saran" ><?php echo $cari['saran']; ?></textarea>
+                                                    </div>
 
-                                          
-
-                                                <div class="form-group">
-                                                    <label>Deskripsi</label>
-                                                    <input class="form-control" placeholder="Deskripsi" name="deskripsi" value="<?php echo $cari['deskripsi']; ?>">
-                                                </div>
-                                               
+                                                 
 
                                                 
 
@@ -72,18 +65,28 @@ include 'footer.php';
 include '../config.php';
 
 if(isset($_POST['simpan'])){
-    $deskripsi   =   $_POST['deskripsi'];
 
-    $sql = "UPDATE tb_nilai_ekskul set deskripsi = '$deskripsi' where kd_nilai_ekskul = '$id'";
-    $query = mysqli_query($connect, $sql);
+    // $nis   =   $_POST['nis'];
+    $id_saran   =   $_POST['id_saran'];
+    $saran   =   $_POST['saran'];
+   
 
+    // for($i=0;$i<=$jumlah;++$i){
+        $sql = "UPDATE tb_saran set saran='$saran' where id_saran='$id_saran'";
+         $query = mysqli_query($connect, $sql);
+    
+       
+    
+    // }
     if($query){
         echo "<script>window.alert('Data Berhasil di Simpan!');</script>";
-       echo "<script>window.location='input_eks.php?id=$nis&kelas=$kelas';</script>";
+       echo "<script>window.location='saran_walikelas.php?ids';</script>";
     }else{
         echo 'Update Data Gagal!';
     }
 
+  
 
 }
 ?>
+        

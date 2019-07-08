@@ -11,7 +11,7 @@ include 'header.php';
 $level =    $_SESSION['level'];
 $username =    $_SESSION['username'];
 
-$sql = mysqli_query($connect, "SELECT * FROM tb_user a, tb_siswa b WHERE  a.username='$username' and a.nis=b.nis");
+$sql = mysqli_query($connect, "SELECT * FROM tb_user a, tb_siswa b WHERE  a.username='$username' and b.nis='$username'");
 $datasql = mysqli_fetch_array($sql);
 // echo $data['nama'];
 ?>

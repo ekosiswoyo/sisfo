@@ -47,10 +47,7 @@ $cari = mysqli_fetch_array($sql);
                                                     <label>Tema 1</label>
                                                     <input class="form-control" placeholder="Tema 1" name="tema5" value="<?php echo $cari['tema5']; ?>">
                                                 </div>
-                                                 <div class="form-group">
-                                                    <label>Deskripsi</label>
-                                                    <input class="form-control" placeholder="Deskripsi" name="deskripsi" value="<?php echo $cari['deskripsi']; ?>">
-                                                </div>
+                                                 
 
                                                 
 
@@ -92,11 +89,10 @@ if(isset($_POST['simpan'])){
     $tema3 = $_POST['tema3'];
     $tema4 = $_POST['tema4'];
     $tema5 = $_POST['tema5'];
-    $deskripsi   =   $_POST['deskripsi'];
     // $jumlah = count($kd_nilai_keterampilan) - 1;
 
     // for($i=0;$i<=$jumlah;++$i){
-        $sql = "UPDATE tbl_nilai_keterampilan set tema1='$tema1', tema2='$tema2', tema3='$tema3', tema4='$tema4', tema5='$tema5', deskripsi='$deskripsi' where kd_nilai_ketrampilan='$kd_nilai_keterampilan'";
+        $sql = "UPDATE tbl_nilai_keterampilan set tema1='$tema1', tema2='$tema2', tema3='$tema3', tema4='$tema4', tema5='$tema5' where kd_nilai_ketrampilan='$kd_nilai_keterampilan'";
          $query = mysqli_query($connect, $sql);
     
        

@@ -81,7 +81,7 @@ if(isset($_POST['simpan'])){
 
 
     if($ekstensi_file == "application/pdf" or $ekstensi_file == ""){
-    $masuk =  mysqli_query($connect,"INSERT INTO tb_nilai (file,judul,isi) VALUES ('$nama_file1','$judul','$isi')");
+    $masuk =  mysqli_query($connect,"INSERT INTO tb_pengumuman(file,judul,isi) VALUES ('$nama_file1','$judul','$isi')");
     
     move_uploaded_file($lokasi_file1,'../files/'.$nama_file1);
 

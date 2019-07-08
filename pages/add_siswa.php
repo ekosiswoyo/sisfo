@@ -132,7 +132,7 @@ if(isset($_POST['simpan'])){
 
     $sql =  mysqli_query($connect,"INSERT INTO tb_siswa (nis,nm_siswa,kd_kelas,tmp_lahir,jns_kel,agama,pend_terakhir,alamat) VALUES ('$nis','$nm_siswa','$kd_kelas','$tmp_lahir','$jns_kel','$agama','$pend_terakhir','$alamat')");
    
-    $sql .=  mysqli_query($connect,"INSERT INTO tb_user (username, password, nama, level) VALUES ('$nis','$password','$nm_siswa','Siswa')"); 
+    $sql .=  mysqli_query($connect,"INSERT INTO tb_user (username, password, nama, level) VALUES ('$nis','$password','$nm_siswa','Wali Murid')"); 
 
     if($sql){
         echo "<script>window.alert('Data Berhasil di Simpan!');</script>";

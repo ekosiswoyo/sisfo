@@ -44,7 +44,7 @@ include 'header.php';
                                             <tbody>
                                                 <?php
                                                 $no = 1;
-                                                $sql = mysqli_query($connect, "Select * from tb_nilai");
+                                                $sql = mysqli_query($connect, "Select * from tb_pengumuman");
                                                 while($data = mysqli_fetch_array($sql)){
                                                 ?>
                                                 <tr class="odd gradeX">

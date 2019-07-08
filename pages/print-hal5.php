@@ -26,7 +26,30 @@ echo "<table width=100%>
      ";
 
      
-echo "<b>E. Kondisi Kesehatan</b>
+echo "<b>E. Tinggi dan Berat Badan</b>
+     <table id='tablemodul1' width=100% border=1>
+         <tr>
+           <th width='40px'>No</th>
+           <th width='30%'>Aspek yang dinilai</th>
+           <th>Smt 1</th>
+           <th>Smt 2</th>
+           </tr>";
+     
+         $extra = mysqli_query($connect, "SELECT * FROM tb_ukuran where nis='$_GET[id]'");
+    $no = 1;
+    while ($ex = mysqli_fetch_array($extra)){
+      echo "<tr>
+              <td>$no</td>
+              <td>$ex[aspek]</td>
+              <td>$ex[smt1]</td>
+              <td>$ex[smt2]</td>
+            </tr>";
+        $no++;
+    }
+echo "</table>
+<br>";
+     
+echo "<b>F. Kondisi Kesehatan</b>
      <table id='tablemodul1' width=100% border=1>
          <tr>
            <th width='40px'>No</th>
@@ -46,7 +69,7 @@ echo "<b>E. Kondisi Kesehatan</b>
     }
 echo "</table>
 <br>";
-echo "<b>F. Prestasi</b>
+echo "<b>G. Prestasi</b>
      <table id='tablemodul1' width=100% border=1>
          <tr>
            <th width='40px'>No</th>
@@ -61,6 +84,24 @@ echo "<b>F. Prestasi</b>
               <td>$no</td>
               <td>$ex[jns_kegiatan]</td>
               <td>$ex[keterangan]</td>
+            </tr>";
+        $no++;
+    }
+echo "</table>
+<br>";
+echo "<b>H. Kehadiran</b>
+     <table id='tablemodul1' width=30% border=1>";
+     
+         $extra = mysqli_query($connect, "SELECT * FROM tb_kehadiran where nis='$_GET[id]'");
+    while ($ex = mysqli_fetch_array($extra)){
+      echo "<tr>
+              <td>Sakit : $ex[sakit] Hari</td>
+            </tr>
+            <tr>
+              <td>Izin : $ex[izin] Hari</td>
+             </tr>
+             <tr> 
+              <td>Tanpa Ket. : $ex[alpha] Hari</td>
             </tr>";
         $no++;
     }

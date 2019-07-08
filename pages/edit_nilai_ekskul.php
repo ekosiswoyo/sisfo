@@ -85,12 +85,6 @@ include 'header.php';
                                                         <?php } ?>
                                                     </select>
                                                     </td>
-                                                    <td>
-                                                    <input class="form-control" placeholder="Kegiatan" name="kegiatan[]" value="<?php echo $sqlcari['kegiatan'];?>">
-                                                    </td>
-
-
-                                                    <td><input class="form-control" placeholder="Nilai" name="nilai[]" value="<?php echo $sqlcari['nilai'];?>"></td>
                                                     <td><input class="form-control" placeholder="Deskripsi" name="deskripsi[]" value="<?php echo $sqlcari['deskripsi'];?>"></td>
                                                 </tr>
                                                 <?php 
@@ -125,13 +119,11 @@ if(isset($_POST['simpan'])){
 
     $kd_nilai_ekskul   =   $_POST['kd_nilai_ekskul'];
     $kd_ekskul   =   $_POST['kd_ekskul'];
-    $kegiatan   =   $_POST['kegiatan'];
-    $nilai   =   $_POST['nilai'];
     $deskripsi   =   $_POST['deskripsi'];
     $jumlah = count($kegiatan) - 1;
 
     for($i=0;$i<=$jumlah;++$i){
-        $sql = "UPDATE tb_nilai_ekskul SET kegiatan = '$kegiatan[$i]', nilai = '$nilai[$i]', deskripsi = '$deskripsi[$i]' where kd_nilai_ekskul = $kd_nilai_ekskul[$i]";
+        $sql = "UPDATE tb_nilai_ekskul SET deskripsi = '$deskripsi[$i]' where kd_nilai_ekskul = $kd_nilai_ekskul[$i]";
         $query = mysqli_query($connect, $sql);
     
        
